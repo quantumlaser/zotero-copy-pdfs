@@ -16,7 +16,7 @@
         em:type="2"
         em:creator="Quantumlaser"
         em:description="Zotero plugin for auto-fetching numbers of citations from Google Scholar"
-        em:homepageURL="http://beloglazov.info">
+        em:homepageURL="http://onlyforyou.xyze">
         <em:type>2</em:type>
         <em:targetApplication RDF:resource="rdf:#$x61SL3"/>
         <em:targetApplication>

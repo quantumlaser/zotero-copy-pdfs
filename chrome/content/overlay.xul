@@ -28,7 +28,7 @@
         <menuitem
             id="zotero-collectionmenu-copypdfs"
             label="&zotero.copypdfs.copyPDFs.label;"
-            oncommand="Zotero.CopyPDFs.copyPDFsSelected()"/>
+            oncommand="Zotero.CopyPDFs.copyPDFsSelectedEntity()"/>
     </popup>
 
     <popup
@@ -37,7 +37,7 @@
         <menuitem
             id="zotero-itemmenu-copypdfs"
             label="&zotero.copypdfs.copyPDFs.label;"
-            oncommand="Zotero.CopyPDFs.copyPDFsSelected()"/>
+            oncommand="Zotero.CopyPDFs.copyPDFsSelectedItems()"/>
         <!--menuitem
             id="zotero-itemmenu-clearExtra"
             label="&zotero.copypdfs.clearExtra.label;"

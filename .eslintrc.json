@@ -1,0 +1,15 @@
+{
+    "extends": "google",
+    "env": {
+      "browser": true
+    },
+    "globals": {
+        "Zotero": true
+    },
+    "rules":{
+        "no-alert": 0,
+        "no-unused-vars": 0,
+        "eqeqeq": 0,
+        "no-eq-null": 0
+    }
+}
