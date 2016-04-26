@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://zoterocopypdfs/locale/overlay.dtd">
+
+<overlay
+    id="zoterocopypdfs"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script
+        type="application/x-javascript"
+        src="chrome://zoterocopypdfs/content/scripts/zoterocopypdfs.js"/>
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle
+            id="zoterocopypdfs-bundle"
+            src="chrome://zoterocopypdfs/locale/zoterocopypdfs.properties"/>
+    </stringbundleset>
+
+    <menupopup id="zotero-tb-actions-popup">
+        <menuitem
+            id="zoterocopypdfs-tb-actions-export-playground"
+            label="&zotero.copypdfs.copyPDFsAll.label;"
+            insertbefore="zotero-tb-actions-utilities-separator"
+            oncommand="Zotero.CopyPDFs.copyPDFsAll();"/>
+    </menupopup>
+
+    <popup id="zotero-collectionmenu">
+        <menuitem
+            id="zotero-collectionmenu-copypdfs"
+            label="&zotero.copypdfs.copyPDFs.label;"
+            oncommand="Zotero.CopyPDFs.copyPDFsSelected()"/>
+    </popup>
+
+    <popup
+        id="zotero-itemmenu"
+        onpopupshowing="ZoteroPane.buildItemContextMenu();">
+        <menuitem
+            id="zotero-itemmenu-copypdfs"
+            label="&zotero.copypdfs.copyPDFs.label;"
+            oncommand="Zotero.CopyPDFs.copyPDFsSelected()"/>
+        <!--menuitem
+            id="zotero-itemmenu-clearExtra"
+            label="&zotero.copypdfs.clearExtra.label;"
+            oncommand="Zotero.copypdfs.clearSelectedItems()"/-->
+    </popup>
+</overlay>

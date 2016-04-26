@@ -1,0 +1,7 @@
+content zoterocopypdfs chrome/content/
+
+overlay chrome://zotero/content/zoteroPane.xul chrome://zoterocopypdfs/content/overlay.xul
+
+locale  zoterocopypdfs  en-US   chrome/locale/en-US/
+locale  zoterocopypdfs  ru-RU   chrome/locale/ru-RU/
+locale  zoterocopypdfs  it-IT   chrome/locale/it-IT/

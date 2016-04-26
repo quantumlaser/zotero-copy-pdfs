@@ -1,0 +1,6 @@
+<!ENTITY zotero.copypdfs.update.label "Update1 citations">
+<!ENTITY zotero.copypdfs.updateAll.label "Update1 all citations">
+<!ENTITY zotero.copypdfs.searchCite.label "Search1 Citations">
+<!ENTITY zotero.copypdfs.clearExtra.label "clear1 extra">
+<!ENTITY zotero.copypdfs.copyPDFs.label "Copy PDFs">
+<!ENTITY zotero.copypdfs.copyPDFsAll.label "Copy PDFs All">
