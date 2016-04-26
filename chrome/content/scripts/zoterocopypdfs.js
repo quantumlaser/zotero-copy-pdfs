@@ -83,7 +83,83 @@ Zotero.CopyPDFs.copyPDFsSelectedItems = function() {
 
 Zotero.CopyPDFs.copyPDFsItems = function(items) {
   alert('Get All Selected Items!');
+  try {
+    items.forEach(function(item) {
+      alert(JSON.stringify(item));
+      try {
+        alert(JSON.stringify(item.attachments));
+      } catch (e) {}
+      try {
+        if (item.isRegularItem()) {
+          var attachments = item.getAttachments(false);
+          for (var a in attachments) {
+            var attachment = Zotero.Items.get(attachments[a]);
+            if (attachment.attachmentMIMEType == 'application/pdf' ||
+              attachment.attachmentMIMEType == 'text/html') {
+              // fulltext.push(a_item.attachmentText);
+              alert(JSON.stringify(attachment.path));
+            }
+          }
+        }
+      } catch (e) {}
+      try {
+        testItem(item);
+      /*
+      if (item.attachments) {
+        for (var i in item.attachments) {
+          var attachment = item.attachments[i];
+          alert(attachment.localPath);
+        }
+      }
+      */
+      } catch (e) {}
+    });
+  } catch (e) { }
 };
+
+function testItem(item) {
+  var attachmentString = "";
+
+  for (var i in item.attachments) {
+    var attachment = item.attachments[i];
+    // Unfortunately, it looks like \{ in file field breaks BibTeX (0.99d)
+    // even if properly backslash escaped, so we have to make sure that
+    // it doesn't make it into this field at all
+    var title = cleanFilePath(attachment.title);
+    var path = null;
+
+    if (Zotero.getOption("exportFileData") && attachment.saveFile &&
+      attachment.mimeType == 'application/pdf') {
+    //	path = cleanFilePath(attachment.defaultPath);
+      path = "/pdfs/" + encodeFilePathComponent(title);
+      attachment.saveFile(path, true);
+    } else if (attachment.localPath) {
+    //	path = cleanFilePath(attachment.localPath);
+      path = "/pdfs/" + encodeFilePathComponent(title);
+    }
+
+    if (path) {
+      attachmentString += ";" + encodeFilePathComponent(title)
+        + ":" + encodeFilePathComponent(path)
+        + ":" + encodeFilePathComponent(attachment.mimeType);
+      alert(path);
+    }
+  }
+}
+
+function cleanFilePath(str) {
+  return str.replace(/(?:\s*[{}]+)+\s*/g, ' ');
+}
+
+var filePathSpecialChars = '\\\\:;$'; // $ for Mendeley (see cleanFilePath for {})
+var encodeFilePathRE = new RegExp('[' + filePathSpecialChars + ']', 'g');
+function encodeFilePathComponent(value) {
+  return value.replace(encodeFilePathRE, "\\$&");
+}
+
+function decodeFilePathComponent(value) {
+  return value.replace(/\\([^A-Za-z0-9.])/g, "$1");
+}
 
 if (typeof window !== 'undefined') {
   window.addEventListener('load', function(e) {

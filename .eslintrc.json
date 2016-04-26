@@ -11,6 +11,9 @@
         "no-alert": 0,
         "no-unused-vars": 0,
         "eqeqeq": 0,
-        "no-eq-null": 0
+        "no-eq-null": 0,
+        "guard-for-in": 0,
+        "operator-linebreak": 0,
+        "require-jsdoc": 0
     }
 }
