@@ -28,20 +28,61 @@ Zotero.CopyPDFs.init = function() {
 Zotero.CopyPDFs.copyPDFsAll = function() {
     // window.open('http://baidu.com');
   alert('CopyPDFs All!');
+  var items = [];
+  Zotero.Items.getAll().forEach(function(item) {
+    if (item.isRegularItem() && !item.isCollection()) {
+      var libraryId = item.getField('libraryID');
+      if (libraryId == null ||
+            libraryId == '' ||
+            Zotero.Libraries.isEditable(libraryId)) {
+        items.push(item);
+      }
+    }
+  });
+  Zotero.CopyPDFs.copyPDFsItems(items);
 };
 
 Zotero.CopyPDFs.copyPDFsSelectedEntity = function(libraryId) {
     // window.open('http://baidu.com');
   alert('CopyPDFs Selected Entity!');
+  if (!ZoteroPane.canEdit()) {
+    ZoteroPane.displayCannotEditLibraryMessage();
+    return;
+  }
+
+  var collection = ZoteroPane.getSelectedCollection();
+  var group = ZoteroPane.getSelectedGroup();
+  var items = [];
+  if (collection) {
+    collection.getChildren(true, false, 'item').forEach(function(item) {
+      items.push(Zotero.Items.get(item.id));
+    });
+    Zotero.CopyPDFs.copyPDFsItems(items);
+  } else if (group) {
+    if (!group.editable) {
+      alert("This group is not editable!");
+      return;
+    }
+    // var items = [];
+    group.getCollections().forEach(function(collection) {
+      collection.getChildren(true, false, 'item').forEach(function(item) {
+        items.push(Zotero.Items.get(item.id));
+      });
+    });
+    Zotero.CopyPDFs.copyPDFsItems(items);
+  } else {
+    Zotero.CopyPDFs.copyPDFsAll();
+  }
 };
 
 Zotero.CopyPDFs.copyPDFsSelectedItems = function() {
     // window.open('http://baidu.com');
-  alert('CopyPDFs!  Selected Items!');
+  alert('CopyPDFs Selected Items!');
+  Zotero.CopyPDFs.copyPDFsItems(ZoteroPane.getSelectedItems());
 };
 
 Zotero.CopyPDFs.copyPDFsItems = function(items) {
-
+  alert('Get All Selected Items!');
 };
 
 if (typeof window !== 'undefined') {

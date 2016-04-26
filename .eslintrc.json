@@ -4,7 +4,8 @@
       "browser": true
     },
     "globals": {
-        "Zotero": true
+        "Zotero": true,
+        "ZoteroPane": true
     },
     "rules":{
         "no-alert": 0,
